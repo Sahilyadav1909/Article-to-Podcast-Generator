@@ -20,7 +20,6 @@ GAP_MS = 350
 
 st.set_page_config(page_title="Article to Podcast", layout="wide")
 
-# ✅ Force URL to be empty (this overrides Streamlit remembering old value)
 if "article_url" not in st.session_state:
     st.session_state["article_url"] = ""
 
@@ -31,7 +30,7 @@ if not GROQ_API_KEY:
     st.error("Missing GROQ_API_KEY in .env. Add it and restart the app.")
     st.stop()
 
-url = st.text_input("Article URL", key="article_url")  # ✅ empty by default
+url = st.text_input("Article URL", key="article_url")  
 target_minutes = st.slider("Podcast length (minutes)", 2, 10, 6, 1)
 
 generate = st.button("Generate Podcast", type="primary")

@@ -16,16 +16,10 @@ from tts_audio import (
     TTSError,
 )
 
-
 class PipelineError(Exception):
     pass
 
-
-# =========================
-# CONFIG
-# =========================
-
-GROQ_MODEL = "llama-3.1-8b-instant"   # hardcoded as requested
+GROQ_MODEL = "llama-3.1-8b-instant"
 MAX_BLOG_CHARS = 12000
 
 EDGE_VOICE = "en-US-JennyNeural"
@@ -34,10 +28,6 @@ EDGE_VOLUME = "+0%"
 
 WORDS_PER_MINUTE = 150
 
-
-# =========================
-# HELPERS
-# =========================
 
 def clean_for_tts(text: str) -> str:
     """
@@ -147,11 +137,6 @@ def _get_source_content(
             f"{e}\n\nThis site likely blocks scraping. Use 'Paste Blog Text' mode."
         ) from e
 
-
-# =========================
-# MAIN STREAM GENERATOR
-# =========================
-
 def generate_podcast_stream(
     *,
     url: Optional[str],
@@ -238,10 +223,9 @@ TEXT:
 
         yield {"type": "status", "message": f"Generating audio for Part {i}/{parts}..."}
 
-        part_title = f"Part {i}"  # UI label only (NOT spoken)
+        part_title = f"Part {i}" 
         temp_mp3 = out_dir / f"_tmp_{run_id}_part_{i}.mp3"
 
-        # ✅ FIX: do NOT prepend "Part i" into the spoken audio
         edge_tts_save_mp3(
             text=part_text,
             voice=EDGE_VOICE,
@@ -257,7 +241,7 @@ TEXT:
             "episode_title": title,
             "part_index": i,
             "parts_total": parts,
-            "part_title": part_title,  # UI only
+            "part_title": part_title,  
             "script": part_text,
             "mp3_path": str(temp_mp3),
         }
@@ -272,7 +256,6 @@ TEXT:
     except TTSError as e:
         raise PipelineError(str(e)) from e
 
-    # Cleanup temp files
     for p in temp_mp3_files:
         try:
             p.unlink(missing_ok=True)

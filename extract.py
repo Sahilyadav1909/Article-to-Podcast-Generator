@@ -19,14 +19,6 @@ DEFAULT_HEADERS = {
 
 
 def extract_blog(url: str, timeout: int = 25) -> dict:
-    """
-    Extract main content from a blog URL.
-    Returns: {"title": str, "text": str}
-
-    Friendly errors:
-      - 403 => site blocked automated requests
-      - 404 => URL not found
-    """
     if not url or not url.startswith(("http://", "https://")):
         raise ExtractError("Please provide a valid http(s) URL.")
 

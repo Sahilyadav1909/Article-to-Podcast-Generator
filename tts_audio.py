@@ -12,7 +12,6 @@ class TTSError(Exception):
 
 
 def _run_async(coro):
-    """Run async code safely from sync context (Streamlit friendly)."""
     try:
         loop = asyncio.get_event_loop()
         if loop.is_running():
