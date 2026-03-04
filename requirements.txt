@@ -1,0 +1,10 @@
+streamlit
+python-dotenv
+requests
+trafilatura
+edge-tts
+
+groq
+
+elevenlabs
+pydub

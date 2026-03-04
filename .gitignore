@@ -1,0 +1,20 @@
+# Secrets
+.env
+
+# Virtual environment
+venv/
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Outputs / generated files
+outputs/
+*.mp3
+*.wav
+*.json
+
+# OS files
+.DS_Store
+Thumbs.db
